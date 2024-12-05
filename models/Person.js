@@ -1,15 +1,25 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 
-// Définir le schéma pour la personne
+
 const personSchema = new mongoose.Schema({
-  name: { 
+  name: {
     type: String,
-    required: true },
+    required: true,
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+  },
   age: {
-    type:
-    Number },
-  favoriteFoods: { type: [String] }
-});
+    type: Number,
+  },
+  favoriteFoods:[]
+},
+    {
+        timestamps:true,
+    }
+);
 
-// Créer et exporter le modèle Person
-module.exports = mongoose.model('Person', personSchema);
+const Person = mongoose.model("person", personSchema);
+module.exports = Person
